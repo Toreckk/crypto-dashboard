@@ -1,12 +1,15 @@
 import React from 'react';
 import './App.scss';
 import AppBar from './AppBar';
+import AppProvider from './AppProvider';
 
 function App() {
   return (
     <div className="app-wrapper">
-      <AppBar/>
-      <p>Hello world!</p>
+      <AppProvider>
+        <AppBar/>
+        <p>Hello world!</p>
+      </AppProvider> 
     </div>
   );
 }
