@@ -1,6 +1,5 @@
 import React from 'react';
 import './AppBar.scss'
-import {AppContext} from './AppProvider';
 
 function AppBar() {
     return (<div className="Header">
