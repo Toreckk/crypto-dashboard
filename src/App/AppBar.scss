@@ -1,4 +1,16 @@
 .Header {
   display: grid;
   grid-template-columns: 180px auto 100px 100px;
+  margin-bottom: 40px;
+}
+
+.Logo {
+  font-size: 1.5em;
+}
+
+.controlBtn {
+  cursor: pointer;
+  &:active {
+    text-shadow: 0px 0px 60px #03ff03;
+  }
 }

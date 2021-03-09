@@ -3,10 +3,10 @@ import './AppBar.scss'
 
 function AppBar() {
     return (<div className="Header">
-        <div> CryptoDash </div>
+        <div className="Logo"> CryptoDash </div>
         <div/>
-        <div> Dashboard </div>
-        <div> Settings </div>
+        <div className="controlBtn"> Dashboard </div>
+        <div className="controlBtn"> Settings </div>
     </div>);
 }
 
