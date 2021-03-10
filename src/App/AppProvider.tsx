@@ -47,7 +47,7 @@ const AppProvider: FC = ({children}) => {
         fetchCoins();
     }, []);
 
-    console.log(coinList);
+    console.log(page, firstVisit);
 
     return (
         <AppContext.Provider value={{page, setPage, firstVisit, setFirstVisit, coinList}}>
