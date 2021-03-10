@@ -1,0 +1,36 @@
+//Theme selector
+$theme: "dark"; //dark or light
+$lightTheme: $theme == "light";
+
+//main colors
+$color: if($lightTheme, white, #061a44);
+$color2: if($lightTheme, white, #010e2c);
+$color3: if($lightTheme, #09f010, #42ff3a);
+
+@if $lightTheme {
+  body {
+    background-color: #e1eaee;
+    color: #061a44;
+  }
+}
+
+//Font colors
+$fontColorGreen: #03a9f4;
+$fontColorWhite: white;
+
+//Box shadows
+@mixin subtleBoxShadow() {
+  @if ($lightTheme) {
+    box-shadow: 0px 0px 5px 1px #a9b6ff;
+  } @else {
+    box-shadow: 0px 0px 5px 1px #121d5b;
+  }
+}
+$greenBoxShadow: 0px 0px 4px 2px #5fff17;
+$redBoxShadow: 0px 0px 2px 2px #e41111;
+
+//Font sizes
+$fontSizeBig: 2em;
+$fontSize1: 1.5em;
+$fontSize2: 1em;
+$fontSize3: 0.75em;
