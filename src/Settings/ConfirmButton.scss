@@ -1,6 +1,15 @@
+@import "/src/Shared/Styles";
+
 .confirmBtn {
   margin: 20px;
-  color: green;
+  color: $color3;
+  font-size: $fontSize1;
+  padding: 5px;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: $greenBoxShadow;
+  }
 }
 
 .confirmBtn-wrapper {

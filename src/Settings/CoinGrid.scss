@@ -1,4 +1,7 @@
+@import "/src/Shared/Styles";
+
 .coinList-wrapper {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+  grid-gap: 15px;
 }
