@@ -5,8 +5,10 @@ import CoinTile from "./CoinTile";
 
 import "./CoinGrid.scss";
 
-function getCoins(coinList: [ICoinProp], topSection: Boolean){
-    return Object.keys(coinList).slice(0, topSection ? 5 : 100);
+function getCoins(coinList: [ICoinProp], topSection: Boolean, favorites: any) {
+    return topSection ? 
+        Object.keys(coinList).filter(coinKey => favorites.indexOf(coinKey)>=0) : 
+        Object.keys(coinList).slice(0,100);
 }
 
 interface ICoinGridProps{
@@ -14,12 +16,11 @@ interface ICoinGridProps{
 }
 
 function CoinGrid ({topSection}:ICoinGridProps){
-    console.log("topSection+" +topSection);
     return (
         <AppContext.Consumer>
-            {({coinList})=>
+            {({coinList, favorites})=>
                 <div className="coinList-wrapper">
-                        {getCoins(coinList, topSection).map((coinKey, id)=>
+                        {getCoins(coinList, topSection, favorites).map((coinKey: any, id: any)=>
                             <CoinTile key={id} topSection={topSection } coinKey={coinKey}/>)}
                 </div>
             }
