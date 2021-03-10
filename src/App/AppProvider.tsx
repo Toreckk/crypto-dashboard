@@ -1,4 +1,5 @@
 import React, { createContext, useState, FC, useEffect } from "react";
+import {ICoinProp} from "../Types/Types";
 const file = require("../tokens.json");
 const cc = require('cryptocompare');
 cc.setApiKey(file["CC_API_KEY"]);
@@ -17,10 +18,12 @@ const savedSettings: any = () =>{
     return {};
 }
 
+
+
 type ContextStateTypes = {
     page: String,
     firstVisit: Boolean,
-    coinList: [],
+    coinList: [ICoinProp],
     setFirstVisit: (firstVisit: Boolean)=>void,
     setPage: (page: String)=> void
 }

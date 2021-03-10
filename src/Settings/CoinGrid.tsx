@@ -1,15 +1,21 @@
 import React from 'react';
 import {AppContext} from "../App/AppProvider";
-import Tile from "../Shared/Tile";
+import {ICoinProp} from "../Types/Types";
+import CoinTile from "./CoinTile";
+
 import "./CoinGrid.scss";
+
+function getCoins(coinList: [ICoinProp]){
+    return Object.keys(coinList).slice(0,100);
+}
 
 function CoinGrid (){
     return (
         <AppContext.Consumer>
             {({coinList})=>
                 <div className="coinList-wrapper">
-                        {Object.keys(coinList).map((coinKey, id)=>
-                            <Tile key={id}>{coinKey}</Tile>)}
+                        {getCoins(coinList).map((coinKey, id)=>
+                            <CoinTile coinKey={coinKey}/>)}
                 </div>
             }
         </AppContext.Consumer>

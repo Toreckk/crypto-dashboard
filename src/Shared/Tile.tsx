@@ -1,5 +1,3 @@
-import React from 'react';
-import {AppContext} from "../App/AppProvider";
 import "./Tile.scss";
 
 interface IProps {
