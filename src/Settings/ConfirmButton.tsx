@@ -3,8 +3,8 @@ import {AppContext} from '../App/AppProvider';
 import "./ConfirmButton.scss";
 
 function ConfirmButton() {
-    const { page, setPage } = useContext(AppContext);
-    const { firstVisit, setFirstVisit } = useContext(AppContext);
+    const {setPage } = useContext(AppContext);
+    const {setFirstVisit } = useContext(AppContext);
     return (
         <AppContext.Consumer>
             {()=>

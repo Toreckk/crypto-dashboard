@@ -4,7 +4,7 @@ interface IProps {
     children: any
 }
 
-function Tile({children}: IProps){
+export function SelectableTile({children}: IProps){
     return (
         <div className="tile-selectable">
             <div className="tile">
@@ -15,4 +15,24 @@ function Tile({children}: IProps){
     );
 }
 
-export default Tile;
+export function DeletableTile({children}: IProps){
+    return (
+        <div className="tile-deletable">
+            <div className="tile">
+                {children}
+            </div>
+        </div>
+        
+    );
+}
+
+export function DisabledTile({children}: IProps){
+    return (
+        <div className="tile-disabled">
+            <div className="tile">
+                {children}
+            </div>
+        </div>
+        
+    );
+}

@@ -1,15 +1,22 @@
 import "./CoinHeaderGrid.scss";
+import {DeletableTile} from "../Shared/Tile";
 
 interface IHeaderGridProps{
     name: String,
-    symbol: String
+    symbol: String,
+    topSection?: Boolean
 }
 
-function CoinHeaderGrid({name, symbol}:IHeaderGridProps){
+function CoinHeaderGrid({name, symbol, topSection}:IHeaderGridProps){
     return (
         <div className="header-wrapper">
             <div>{name}</div>
-            <div className="coin-symbol">{symbol}</div>
+            {
+                topSection ?
+                    <div className="delete-icon">X</div> : 
+                    <div className="coin-symbol">{symbol}</div>
+            }
+            
         </div>
     );
 }

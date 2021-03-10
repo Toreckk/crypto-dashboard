@@ -12,3 +12,20 @@
     box-shadow: $greenBoxShadow;
   }
 }
+
+.tile-deletable {
+  &:hover {
+    cursor: pointer;
+    box-shadow: $redBoxShadow;
+
+    .delete-icon {
+      display: block;
+      color: red;
+    }
+  }
+}
+
+.tile-disabled {
+  pointer-events: none;
+  opacity: 0.4;
+}
