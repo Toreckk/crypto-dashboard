@@ -1,5 +1,7 @@
 import React, { createContext, useState, FC, useEffect } from "react";
+const file = require("../tokens.json");
 const cc = require('cryptocompare');
+cc.setApiKey(file["CC_API_KEY"]);
 
 
 
@@ -40,10 +42,12 @@ const AppProvider: FC = ({children}) => {
 
     useEffect(() => {
         const fetchCoins = async () => {
-            setCoinList( (await cc.coinList()).Data);
+            setCoinList((await cc.coinList()).Data);
         }
         fetchCoins();
-    });
+    }, []);
+
+    console.log(coinList);
 
     return (
         <AppContext.Provider value={{page, setPage, firstVisit, setFirstVisit, coinList}}>

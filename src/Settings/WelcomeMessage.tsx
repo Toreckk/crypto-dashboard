@@ -5,7 +5,7 @@ function WelcomeMessage() {
   return (
       <AppContext.Consumer>
         {({firstVisit})=>
-            firstVisit? 
+            firstVisit ? 
                 <h3>
                     Welcome to CryptoDash, please select your favourite coins to begin.
                 </h3> : null
