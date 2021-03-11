@@ -7,18 +7,15 @@ cc.setApiKey(file["CC_API_KEY"]);
 
 
 const savedSettings: any = () =>{
-    // let cryptoDashData = JSON.parse(localStorage.getItem('cryptoDash') || '{}');
-    console.log(localStorage.getItem('cryptoDash') === null);
     if(localStorage.getItem('cryptoDash') === null){
         return {
             page: 'settings',
             firstVisit: true
         } 
     }
-    return {};
+    let {favorites} = JSON.parse(localStorage.getItem('cryptoDash') || '{}');
+    return {favorites};
 }
-
-
 
 type ContextStateTypes = {
     page: String,

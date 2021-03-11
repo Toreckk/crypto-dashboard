@@ -7,13 +7,13 @@ function ConfirmButton() {
     const {setFirstVisit } = useContext(AppContext);
     return (
         <AppContext.Consumer>
-            {()=>
+            {({favorites})=>
                 <div className="confirmBtn-wrapper">
                     <div className="confirmBtn" onClick={()=>{
-                        setPage("dashboard");
+                        setPage("settings");
                         setFirstVisit(false);
                         localStorage.setItem('cryptoDash', JSON.stringify({
-                            test: 'hello'
+                            favorites
                         }))
                     }}>
                         Confirm Favorites
