@@ -21,7 +21,7 @@ function ConfirmButton() {
                 </div>   
             }
         </AppContext.Consumer>
-            );
+    );
 }
 
 export default ConfirmButton;
