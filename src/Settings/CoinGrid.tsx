@@ -5,14 +5,19 @@ import CoinTile from "./CoinTile";
 
 import "./CoinGrid.scss";
 
-function getCoins(coinList: ICoinProp[], topSection: Boolean, favorites: String[]) {
-    // console.log(favorites);
-    // console.log(Object.keys(coinList).filter(coinKey => favorites.indexOf(coinKey)>=0));
-    // console.log(favorites === Object.keys(coinList).filter(coinKey => favorites.indexOf(coinKey)>=0));
-    // console.log(favorites);
+const lowerSectionCoins = ( coinList: ICoinProp[], filteredCoins: ICoinProp[]) => {
+
+    console.log(filteredCoins.length);
+
+    return (filteredCoins && filteredCoins.length > 0 && filteredCoins.map(coin=>coin.Symbol)) || Object.keys(coinList).slice(0,100);
+        
+}
+
+function getCoins(coinList: ICoinProp[], topSection: Boolean, favorites: String[], filteredCoins: ICoinProp[]) {
+
     return topSection ? 
-        Object.keys(coinList).filter(coinKey => favorites.indexOf(coinKey)>=0).sort((a,b)=>favorites.indexOf(a)-favorites.indexOf(b)) : 
-        Object.keys(coinList).slice(0,100);
+        Object.keys(coinList).filter(coinKey => favorites.indexOf(coinKey)>=0).sort((a,b)=>favorites.indexOf(a)-favorites.indexOf(b)):
+        lowerSectionCoins(coinList, filteredCoins);
 }
 
 interface ICoinGridProps{
@@ -22,9 +27,9 @@ interface ICoinGridProps{
 function CoinGrid ({topSection}:ICoinGridProps){
     return (
         <AppContext.Consumer>
-            {({coinList, favorites})=>
+            {({coinList, favorites, filteredCoins})=>
                 <div className="coinList-wrapper">
-                        {getCoins(coinList, topSection, favorites).map((coinKey: any, id: any)=>
+                        {getCoins(coinList, topSection, favorites, filteredCoins).map((coinKey: any, id: any)=>
                             <CoinTile key={id} topSection={topSection } coinKey={coinKey}/>)}
                 </div>
             }

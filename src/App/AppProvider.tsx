@@ -22,9 +22,11 @@ type ContextStateTypes = {
     firstVisit: Boolean,
     coinList: ICoinProp[],
     favorites: String[],
+    filteredCoins: ICoinProp[],
     setFirstVisit: (firstVisit: Boolean)=>void,
     setPage: (page: String)=> void,
     setFavorites: (newFavorites: String[]) => void,
+    setFilteredCoins: (filteredCoins: ICoinProp[]) => void
 }
 
 const AppContextDefaultValues: ContextStateTypes = {
@@ -32,6 +34,7 @@ const AppContextDefaultValues: ContextStateTypes = {
     firstVisit: false,
     coinList: [],
     favorites:["BTC","ETH","XMR","DOGE"],
+    filteredCoins: [],
     ...savedSettings()
 
 };
@@ -43,6 +46,7 @@ const AppProvider: FC = ({children}) => {
     const [firstVisit, setFirstVisit] = useState(AppContextDefaultValues.firstVisit);
     const [coinList, setCoinList] = useState<ICoinProp[]>([]);
     const [favorites, setFavorites] = useState(AppContextDefaultValues.favorites);
+    const [filteredCoins, setFilteredCoins] = useState<ICoinProp[]>([]);
 
     useEffect(() => {
         const fetchCoins = async () => {
@@ -52,7 +56,8 @@ const AppProvider: FC = ({children}) => {
         
     },[]);
     return (
-        <AppContext.Provider value={{page, setPage, firstVisit, setFirstVisit, favorites, setFavorites, coinList}}>
+        <AppContext.Provider value={{page, setPage, firstVisit, setFirstVisit,
+         favorites, setFavorites, coinList, filteredCoins, setFilteredCoins}}>
             {children}
         </AppContext.Provider>
     );
