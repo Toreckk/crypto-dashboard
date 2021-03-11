@@ -1,0 +1,15 @@
+@import "/src/Shared/Styles";
+
+.search-grid {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+}
+
+.search-input {
+  background-color: $color2;
+  font-size: $fontSize2;
+  color: #1163c9;
+  border: 1px solid;
+  height: 24px;
+  place-self: center left;
+}
