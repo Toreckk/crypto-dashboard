@@ -23,17 +23,18 @@ const savedSettings: any = () =>{
 type ContextStateTypes = {
     page: String,
     firstVisit: Boolean,
-    coinList: [ICoinProp],
-    favorites: [String],
+    coinList: ICoinProp[],
+    favorites: String[],
     setFirstVisit: (firstVisit: Boolean)=>void,
-    setPage: (page: String)=> void
+    setPage: (page: String)=> void,
+    setFavorites: (newFavorites: String[]) => void,
 }
 
 const AppContextDefaultValues: ContextStateTypes = {
     page: "dashboard",
     firstVisit: false,
     coinList: [],
-    favorites:['BTC','ETH','XMR','DOGE'],
+    favorites:["BTC","ETH","XMR","DOGE"],
     ...savedSettings()
 
 };
@@ -43,7 +44,7 @@ export const AppContext = createContext<ContextStateTypes>(AppContextDefaultValu
 const AppProvider: FC = ({children}) => {
     const [page, setPage] = useState(AppContextDefaultValues.page);
     const [firstVisit, setFirstVisit] = useState(AppContextDefaultValues.firstVisit);
-    const [coinList, setCoinList] = useState(AppContextDefaultValues.coinList);
+    const [coinList, setCoinList] = useState<ICoinProp[]>([]);
     const [favorites, setFavorites] = useState(AppContextDefaultValues.favorites);
 
     useEffect(() => {
@@ -51,12 +52,10 @@ const AppProvider: FC = ({children}) => {
             setCoinList((await cc.coinList()).Data);
         }
         fetchCoins();
-    }, []);
-
-    console.log(page, firstVisit);
-
+        
+    },[]);
     return (
-        <AppContext.Provider value={{page, setPage, firstVisit, setFirstVisit, favorites, coinList}}>
+        <AppContext.Provider value={{page, setPage, firstVisit, setFirstVisit, favorites, setFavorites, coinList}}>
             {children}
         </AppContext.Provider>
     );

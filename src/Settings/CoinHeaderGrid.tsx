@@ -1,5 +1,4 @@
 import "./CoinHeaderGrid.scss";
-import {DeletableTile} from "../Shared/Tile";
 
 interface IHeaderGridProps{
     name: String,

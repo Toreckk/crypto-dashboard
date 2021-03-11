@@ -5,9 +5,13 @@ import CoinTile from "./CoinTile";
 
 import "./CoinGrid.scss";
 
-function getCoins(coinList: [ICoinProp], topSection: Boolean, favorites: any) {
+function getCoins(coinList: ICoinProp[], topSection: Boolean, favorites: String[]) {
+    // console.log(favorites);
+    // console.log(Object.keys(coinList).filter(coinKey => favorites.indexOf(coinKey)>=0));
+    // console.log(favorites === Object.keys(coinList).filter(coinKey => favorites.indexOf(coinKey)>=0));
+    // console.log(favorites);
     return topSection ? 
-        Object.keys(coinList).filter(coinKey => favorites.indexOf(coinKey)>=0) : 
+        Object.keys(coinList).filter(coinKey => favorites.indexOf(coinKey)>=0).sort((a,b)=>favorites.indexOf(a)-favorites.indexOf(b)) : 
         Object.keys(coinList).slice(0,100);
 }
 

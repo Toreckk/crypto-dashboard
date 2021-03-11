@@ -1,12 +1,13 @@
 import "./Tile.scss";
 
 interface IProps {
-    children: any
+    children: any,
+    onClick: () => void;
 }
 
-export function SelectableTile({children}: IProps){
+export function SelectableTile({children, onClick}: IProps){
     return (
-        <div className="tile-selectable">
+        <div className="tile-selectable" onClick={onClick}>
             <div className="tile">
                 {children}
             </div>
@@ -15,9 +16,9 @@ export function SelectableTile({children}: IProps){
     );
 }
 
-export function DeletableTile({children}: IProps){
+export function DeletableTile({children, onClick}: IProps){
     return (
-        <div className="tile-deletable">
+        <div className="tile-deletable" onClick={onClick}>
             <div className="tile">
                 {children}
             </div>
@@ -26,9 +27,9 @@ export function DeletableTile({children}: IProps){
     );
 }
 
-export function DisabledTile({children}: IProps){
+export function DisabledTile({children, onClick}: IProps){
     return (
-        <div className="tile-disabled">
+        <div className="tile-disabled" onClick={onClick}>
             <div className="tile">
                 {children}
             </div>
