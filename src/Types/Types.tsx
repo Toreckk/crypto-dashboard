@@ -18,12 +18,14 @@ export interface ContextStateTypes {
     firstVisit: Boolean,
     coinList: ICoinProp[],
     favorites: String[],
+    currentFavorite: String,
     filteredCoins: ICoinProp[],
     prices: IPriceProp[],
     setFirstVisit: (firstVisit: Boolean)=>void,
     setPage: (page: String)=> void,
     setFavorites: (newFavorites: String[]) => void,
     setFilteredCoins: (filteredCoins: ICoinProp[]) => void,
-    setPrices: (newPrices: IPriceProp[])=> void
+    setPrices: (newPrices: IPriceProp[])=> void,
+    setCurrentFavorite: (newFavorite: String)=> void
 
 }

@@ -5,17 +5,28 @@ interface IPriceTileProps {
     key: number
     price: number,
     symbol: String,
-    priceChange: number
+    priceChange: number,
+    className: String,
+    setCurrentFavorite: (newFavorite: String) => void
 }
 
 const numberFormat = (num: number) => {
     return +(num+ '').slice(0,7);
 }
 
-export const PriceTile = ({key, price, symbol, priceChange}: IPriceTileProps) =>{
+const handleClick = (symbol: String, setCurrentFavorite: (newFavorite: String) => void) => {
+    setCurrentFavorite(symbol);
+    localStorage.setItem('cryptoDash', JSON.stringify({
+        ...JSON.parse(localStorage.getItem('cryptoDash') || '{}'),
+        currentFavorite: symbol
+    }))
+}
+
+export const PriceTile = ({key, price, symbol, priceChange, className, setCurrentFavorite}: IPriceTileProps) =>{
+
     return (
-        <SelectableTile>
-            <div className="header-wrapper">
+        <SelectableTile className={className} onClick={() => handleClick(symbol, setCurrentFavorite)}>
+            <div className={`header-wrapper`}>
                 <div>{symbol}</div>
                 <div className={`coin-symbol ${priceChange >= 0 ? `positive`: `negative`}`}>{numberFormat(priceChange)} %</div> 
             </div>

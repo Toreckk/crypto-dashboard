@@ -3,11 +3,12 @@ import "./Tile.scss";
 interface IProps {
     children: any,
     onClick?: () => void;
+    className?:String
 }
 
-export function SelectableTile({children, onClick}: IProps){
+export function SelectableTile({children, onClick, className}: IProps){
     return (
-        <div className="tile-selectable" onClick={onClick}>
+        <div className={`tile-selectable ${className}`} onClick={onClick}>
             <div className="tile">
                 {children}
             </div>

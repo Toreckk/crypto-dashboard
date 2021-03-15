@@ -13,8 +13,8 @@ const savedSettings: any = () =>{
             firstVisit: true
         } 
     }
-    let {favorites} = JSON.parse(localStorage.getItem('cryptoDash') || '{}');
-    return {favorites};
+    let {favorites, currentFavorite} = JSON.parse(localStorage.getItem('cryptoDash') || '{}');
+    return {favorites, currentFavorite};
 }
 
 const AppContextDefaultValues: ContextStateTypes = {
@@ -24,6 +24,7 @@ const AppContextDefaultValues: ContextStateTypes = {
     favorites:["BTC","ETH","XMR","DOGE"],
     filteredCoins: [],
     prices: [],
+    currentFavorite: "",
     ...savedSettings()
 
 };
@@ -37,6 +38,7 @@ const AppProvider: FC = ({children}) => {
     const [favorites, setFavorites] = useState(AppContextDefaultValues.favorites);
     const [filteredCoins, setFilteredCoins] = useState<ICoinProp[]>([]);
     const [prices, setPrices] = useState<IPriceProp[]>([]);
+    const [currentFavorite, setCurrentFavorite] = useState<String>(favorites[0]);
 
     useEffect(() => {
         const fetchCoins = async () => {
@@ -62,7 +64,7 @@ const AppProvider: FC = ({children}) => {
     },[favorites]);
     return (
         <AppContext.Provider value={{page, setPage, firstVisit, setFirstVisit,
-         favorites, setFavorites, coinList, filteredCoins, setFilteredCoins, prices, setPrices}}>
+         favorites, setFavorites, coinList, filteredCoins, setFilteredCoins, prices, setPrices, currentFavorite, setCurrentFavorite}}>
             {children}
         </AppContext.Provider>
     );
