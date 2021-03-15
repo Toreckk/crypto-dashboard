@@ -2,6 +2,7 @@ import {AppContext} from "../App/AppProvider";
 import {PriceTile} from "./PriceTile";
 import "./PriceGrid.scss";
 
+
 export function PriceGrid(){
     return (
         <AppContext.Consumer>
