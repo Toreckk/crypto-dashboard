@@ -1,10 +1,13 @@
 import React, { createContext, useState, FC, useEffect } from "react";
-import {ContextStateTypes, ICoinProp, IPriceProp} from "../Types/Types";
+import {ContextStateTypes, ICoinProp, IPriceProp, historicalType} from "../Types/Types";
+import moment from "moment";
 const file = require("../tokens.json");
 const cc = require('cryptocompare');
+
+
 cc.setApiKey(file["CC_API_KEY"]);
 
-
+const TIME_UNITS = 10; //days, weeks, months, years,...
 
 const savedSettings: any = () =>{
     if(localStorage.getItem('cryptoDash') === null){
@@ -17,6 +20,20 @@ const savedSettings: any = () =>{
     return {favorites, currentFavorite};
 }
 
+const getHistorical = async (currentFavorite: String) => {
+    let promises = [];
+    for (let units = TIME_UNITS; units >= 0; units--){
+        promises.push(
+            cc.priceHistorical(
+                currentFavorite,
+                ['USD'],
+                moment().subtract({months: units}).toDate()
+            )
+        );
+    }
+    return Promise.all(promises);
+}
+
 const AppContextDefaultValues: ContextStateTypes = {
     page: "dashboard",
     firstVisit: false,
@@ -25,6 +42,7 @@ const AppContextDefaultValues: ContextStateTypes = {
     filteredCoins: [],
     prices: [],
     currentFavorite: "",
+    historical: [],
     ...savedSettings()
 
 };
@@ -39,6 +57,7 @@ const AppProvider: FC = ({children}) => {
     const [filteredCoins, setFilteredCoins] = useState<ICoinProp[]>([]);
     const [prices, setPrices] = useState<IPriceProp[]>([]);
     const [currentFavorite, setCurrentFavorite] = useState<String>(favorites[0]);
+    const [historical, setHistorical] = useState<historicalType[]>([]);
 
     useEffect(() => {
         const fetchCoins = async () => {
@@ -58,13 +77,29 @@ const AppProvider: FC = ({children}) => {
             }
             setPrices(returnData);
         }
+
+        const fetchHistorical = async (currentFavorite: String) => {
+            let results = await getHistorical(currentFavorite);
+            let historicalData = [
+                {
+                    name: currentFavorite,
+                    data: results.map((ticker: any, index: any) => [
+                        moment().subtract({months: TIME_UNITS - index}).valueOf(),
+                        ticker.USD
+                    ])
+                }
+            ];
+            setHistorical(historicalData);
+        }
         fetchCoins();
         fetchPrices(favorites);
+        fetchHistorical(currentFavorite);
         
-    },[favorites]);
+    },[favorites, currentFavorite]);
     return (
         <AppContext.Provider value={{page, setPage, firstVisit, setFirstVisit,
-         favorites, setFavorites, coinList, filteredCoins, setFilteredCoins, prices, setPrices, currentFavorite, setCurrentFavorite}}>
+         favorites, setFavorites, coinList, filteredCoins, setFilteredCoins, prices, setPrices,
+             currentFavorite, setCurrentFavorite, historical, setHistorical}}>
             {children}
         </AppContext.Provider>
     );

@@ -1,14 +1,14 @@
+import { historicalType } from "../Types/Types";
 
 
-export const HighchartConfig = () => {
+export const HighchartConfig = (historical: historicalType[]) => {
     return {
         yAxis:{
             title:{
-                text: 'Price'
+                text: 'Price ($)'
             }
         },
-        series: [{
-          data: [1, 2, 3]
-        }]
+        xAxis: {type: 'datetime'},
+        series: historical
       };
 }

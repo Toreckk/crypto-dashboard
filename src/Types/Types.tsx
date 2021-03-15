@@ -13,6 +13,11 @@ export interface IPriceProp{
 
 }
 
+export interface historicalType {
+    name: String,
+    data: any[][]
+}
+
 export interface ContextStateTypes {
     page: String,
     firstVisit: Boolean,
@@ -21,11 +26,14 @@ export interface ContextStateTypes {
     currentFavorite: String,
     filteredCoins: ICoinProp[],
     prices: IPriceProp[],
+    historical: historicalType[],
     setFirstVisit: (firstVisit: Boolean)=>void,
     setPage: (page: String)=> void,
     setFavorites: (newFavorites: String[]) => void,
     setFilteredCoins: (filteredCoins: ICoinProp[]) => void,
     setPrices: (newPrices: IPriceProp[])=> void,
-    setCurrentFavorite: (newFavorite: String)=> void
+    setCurrentFavorite: (newFavorite: String)=> void,
+    setHistorical: (newHistorical: historicalType[]) => void
+
 
 }

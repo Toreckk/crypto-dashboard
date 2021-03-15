@@ -11,11 +11,11 @@ Highcharts.setOptions(HighcartsTheme);
 export const PriceChart = () => {
     return (
         <AppContext.Consumer>
-            {({currentFavorite})=> 
+            {({historical})=> 
                 <div className="tile">
                     <HighchartsReact
                         highcharts={Highcharts}
-                        options={HighchartConfig()}
+                        options={HighchartConfig(historical)}
                     />
                 </div>          
             }
