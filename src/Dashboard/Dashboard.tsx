@@ -2,7 +2,9 @@ import React from 'react';
 import Page from "../Shared/Page";
 import { PriceGrid } from './PriceGrid';
 import {CoinSpotlight} from "./CoinSpotlight";
+import { PriceChart } from './PriceChart';
 import "./Dashboard.scss";
+
 
 export function DashBoard() {
 
@@ -11,7 +13,7 @@ export function DashBoard() {
       <PriceGrid/>
       <div className="chart-grid">
         <CoinSpotlight/>
-        <div>Chart</div>
+        <PriceChart/>
       </div>
       
     </Page>

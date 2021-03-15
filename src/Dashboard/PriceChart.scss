@@ -1,0 +1,7 @@
+@import "/src/Shared/Styles";
+
+.tile {
+  @include subtleBoxShadow();
+  background-color: $color;
+  padding: 10px;
+}
