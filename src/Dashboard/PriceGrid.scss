@@ -1,0 +1,18 @@
+@import "../Settings/CoinHeaderGrid.scss";
+@import "../Shared/Styles";
+
+.grid-wrapper{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+}
+
+.ticker-price{
+    font-size: $fontSizeBig;
+}
+.positive{
+    color: lawngreen;
+}
+.negative{
+    color: red;
+}

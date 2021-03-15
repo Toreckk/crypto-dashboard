@@ -4,6 +4,7 @@ import AppBar from './AppBar';
 import AppProvider from './AppProvider';
 import Settings from '../Settings/Settings';
 import Content from "../Shared/Content";
+import { DashBoard } from '../Dashboard/Dashboard';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <AppBar/>
         <Content>
           <Settings/>
+          <DashBoard/>
         </Content>
       </AppProvider> 
     </div>

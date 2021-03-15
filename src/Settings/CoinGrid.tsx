@@ -7,8 +7,6 @@ import "./CoinGrid.scss";
 
 const lowerSectionCoins = ( coinList: ICoinProp[], filteredCoins: ICoinProp[]) => {
 
-    console.log(filteredCoins.length);
-
     return (filteredCoins && filteredCoins.length > 0 && filteredCoins.map(coin=>coin.Symbol)) || Object.keys(coinList).slice(0,100);
         
 }

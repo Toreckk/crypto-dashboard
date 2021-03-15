@@ -2,7 +2,7 @@ import "./Tile.scss";
 
 interface IProps {
     children: any,
-    onClick: () => void;
+    onClick?: () => void;
 }
 
 export function SelectableTile({children, onClick}: IProps){

@@ -3,18 +3,17 @@ import {AppContext} from '../App/AppProvider';
 import "./ConfirmButton.scss";
 
 function ConfirmButton() {
-    const {setPage } = useContext(AppContext);
-    const {setFirstVisit } = useContext(AppContext);
     return (
         <AppContext.Consumer>
-            {({favorites})=>
+            {({favorites, setFavorites, setFirstVisit, setPage})=>
                 <div className="confirmBtn-wrapper">
                     <div className="confirmBtn" onClick={()=>{
-                        setPage("settings");
+                        setPage("dashboard");
                         setFirstVisit(false);
                         localStorage.setItem('cryptoDash', JSON.stringify({
                             favorites
                         }))
+                        setFavorites(favorites);
                     }}>
                         Confirm Favorites
                     </div>

@@ -8,9 +8,12 @@ interface IProps {
 function Content({children}:IProps){
     return (
         <AppContext.Consumer>
-            {({coinList})=>{
+            {({coinList, prices, firstVisit})=>{
                 if(!coinList){
                     return <div>Loading coins</div>
+                }
+                if(!firstVisit && prices.length<1){
+                    return <div>Loading prices</div>
                 }
                 return <div>{children}</div>
             }}

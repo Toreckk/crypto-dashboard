@@ -6,9 +6,7 @@ import fuzzy from 'fuzzy';
 import "./Search.scss";
 
 const handleFilter = _.debounce((inputValue: string, coinList: ICoinProp[], setFilteredCoins: (filteredCoins: ICoinProp[]) => void)=>{
-    //Get all the coin symbols
     let coinSymbols = Object.keys(coinList);
-    //Get all the coin names, map symbol to name
     let coinNames = coinSymbols.map((symbol:any)=> coinList[symbol].CoinName);
     let allStringsToSearch = [...coinSymbols, ...coinNames];
     let results = fuzzy
