@@ -20,14 +20,14 @@ const savedSettings: any = () =>{
     return {favorites, currentFavorite};
 }
 
-const getHistorical = async (currentFavorite: String) => {
+const getHistorical = async (currentFavorite: String, chartSelect: string) => {
     let promises = [];
     for (let units = TIME_UNITS; units >= 0; units--){
         promises.push(
             cc.priceHistorical(
                 currentFavorite,
                 ['USD'],
-                moment().subtract({months: units}).toDate()
+                moment().subtract({[chartSelect]: units}).toDate()
             )
         );
     }
@@ -43,6 +43,7 @@ const AppContextDefaultValues: ContextStateTypes = {
     prices: [],
     currentFavorite: "",
     historical: [],
+    chartSelect: 'months',
     ...savedSettings()
 
 };
@@ -58,6 +59,7 @@ const AppProvider: FC = ({children}) => {
     const [prices, setPrices] = useState<IPriceProp[]>([]);
     const [currentFavorite, setCurrentFavorite] = useState<String>(favorites[0]);
     const [historical, setHistorical] = useState<historicalType[]>([]);
+    const [chartSelect, setChartSelect] = useState<string>(AppContextDefaultValues.chartSelect);
 
     useEffect(() => {
         const fetchCoins = async () => {
@@ -79,12 +81,12 @@ const AppProvider: FC = ({children}) => {
         }
 
         const fetchHistorical = async (currentFavorite: String) => {
-            let results = await getHistorical(currentFavorite);
+            let results = await getHistorical(currentFavorite, chartSelect);
             let historicalData = [
                 {
                     name: currentFavorite,
                     data: results.map((ticker: any, index: any) => [
-                        moment().subtract({months: TIME_UNITS - index}).valueOf(),
+                        moment().subtract({[chartSelect]: TIME_UNITS - index}).valueOf(),
                         ticker.USD
                     ])
                 }
@@ -95,11 +97,11 @@ const AppProvider: FC = ({children}) => {
         fetchPrices(favorites);
         fetchHistorical(currentFavorite);
         
-    },[favorites, currentFavorite]);
+    },[favorites, currentFavorite, chartSelect]);
     return (
         <AppContext.Provider value={{page, setPage, firstVisit, setFirstVisit,
          favorites, setFavorites, coinList, filteredCoins, setFilteredCoins, prices, setPrices,
-             currentFavorite, setCurrentFavorite, historical, setHistorical}}>
+             currentFavorite, setCurrentFavorite, historical, setHistorical, chartSelect, setChartSelect}}>
             {children}
         </AppContext.Provider>
     );

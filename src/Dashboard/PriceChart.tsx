@@ -11,12 +11,24 @@ Highcharts.setOptions(HighcartsTheme);
 export const PriceChart = () => {
     return (
         <AppContext.Consumer>
-            {({historical})=> 
+            {({historical, setChartSelect})=> 
+
                 <div className="tile">
-                    <HighchartsReact
-                        highcharts={Highcharts}
-                        options={HighchartConfig(historical)}
-                    />
+                    <select className = "chart-selector" defaultValue={"months"} onChange={ e => setChartSelect(e.target.value)}>
+                        <option value="days">Days</option>
+                        <option value="weeks">Weeks</option>
+                        <option value="months">Months</option>
+                    </select>
+                    {
+                        historical ? 
+                            <HighchartsReact
+                                highcharts={Highcharts}
+                                options={HighchartConfig(historical)}/> 
+                                : <div> Loading Historical data</div>
+                            
+                    
+                    }
+                    
                 </div>          
             }
             

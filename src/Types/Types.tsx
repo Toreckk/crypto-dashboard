@@ -27,13 +27,15 @@ export interface ContextStateTypes {
     filteredCoins: ICoinProp[],
     prices: IPriceProp[],
     historical: historicalType[],
+    chartSelect: string,
     setFirstVisit: (firstVisit: Boolean)=>void,
     setPage: (page: String)=> void,
     setFavorites: (newFavorites: String[]) => void,
     setFilteredCoins: (filteredCoins: ICoinProp[]) => void,
     setPrices: (newPrices: IPriceProp[])=> void,
     setCurrentFavorite: (newFavorite: String)=> void,
-    setHistorical: (newHistorical: historicalType[]) => void
+    setHistorical: (newHistorical: historicalType[]) => void,
+    setChartSelect: (newChartSelect: string)=> void
 
 
 }
