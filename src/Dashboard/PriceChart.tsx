@@ -1,8 +1,12 @@
 import {HighchartConfig} from "./HighchartsConfig";
-import Highcharts from 'highcharts'
+import * as Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official'
 import { AppContext } from "../App/AppProvider";
+import HighcartsTheme from "./HighchartsTheme";
 import "./PriceChart.scss";
+
+//@ts-ignore
+Highcharts.setOptions(HighcartsTheme);
 
 export const PriceChart = () => {
     return (

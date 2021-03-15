@@ -2,8 +2,10 @@
 
 export const HighchartConfig = () => {
     return {
-        title: {
-          text: 'My chart'
+        yAxis:{
+            title:{
+                text: 'Price'
+            }
         },
         series: [{
           data: [1, 2, 3]
